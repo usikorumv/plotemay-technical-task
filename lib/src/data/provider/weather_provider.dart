@@ -1,6 +1,6 @@
 import 'package:weather/weather.dart';
 
-String apiKey = "2d323f7aec69df6f156b7611ec6689f7";
+String apiKey = "YOUR-API-KEY"; // https://openweathermap.org/api
 
 WeatherFactory weatherFactory = WeatherFactory(apiKey);
 

@@ -11,6 +11,8 @@ class WeatherInitial extends WeatherState {}
 
 class WeatherError extends WeatherState {}
 
+class LocationError extends WeatherState {}
+
 class WeatherLoading extends WeatherState {}
 
 class WeatherLoaded extends WeatherState {

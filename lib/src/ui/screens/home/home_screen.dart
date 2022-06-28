@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plotemay_technical_task/src/ui/screens/home/components/shrink_in_and_out_fab.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plotemay_technical_task/src/logic/blocs/counter/counter_bloc.dart';
 import 'package:plotemay_technical_task/src/logic/blocs/weather/weather_bloc.dart';
-import 'package:plotemay_technical_task/src/ui/screens/home/components/shrink_in_and_out_fab.dart';
 import 'package:plotemay_technical_task/src/utils/my_theme/config.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,7 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Text(state.weather);
                 }
                 if (state is WeatherError) {
-                  return const Text("Something went wrong!");
+                  return const Text("Getting weather went wrong");
+                }
+                if (state is LocationError) {
+                  return const Text("Getting current location went wrong");
                 }
                 return const Text("Press the icon to get your location");
               },
@@ -73,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 15),
                 FloatingActionButton(
                   onPressed: () {
-                    _getWeather("San Francisco");
+                    _getWeather();
                   },
                   child: const Icon(Icons.cloud),
                 ),
@@ -113,8 +116,8 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {});
   }
 
-  void _getWeather(String cityName) {
-    BlocProvider.of<WeatherBloc>(context).add(LoadWeather(cityName: cityName));
+  void _getWeather() {
+    BlocProvider.of<WeatherBloc>(context).add(LoadWeather());
     setState(() {});
   }
 }

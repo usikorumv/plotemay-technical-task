@@ -38,6 +38,9 @@ dependencies:
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
 
+  geolocator: ^9.0.0
+  geocoding: ^2.0.4
+
   weather: ^2.0.1
 
 dev_dependencies:
