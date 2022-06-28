@@ -20,7 +20,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
         double farenheit = _(weather.temperature!.fahrenheit!.toDouble());
 
         String formattedWeather =
-            "Weather for ${weather.country},\n${event.cityName}: ${celcius}°C (${farenheit}°F)";
+            "Weather for ${weather.country},\n${event.cityName}: $celcius°C ($farenheit°F)";
 
         emit(WeatherLoaded(weather: formattedWeather));
       } catch (e, s) {

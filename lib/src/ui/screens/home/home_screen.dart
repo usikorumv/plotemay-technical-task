@@ -17,9 +17,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     int count = BlocProvider.of<CounterBloc>(context).count;
 
+    bool shrinkIncreaseButton =
+        BlocProvider.of<CounterBloc>(context).state is CounterIncreaseBlocked;
+    bool shrinkDecreaseButton =
+        BlocProvider.of<CounterBloc>(context).state is CounterDecreaseBlocked;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Weather Counter"),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
@@ -62,14 +68,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     currentTheme.switchTheme();
                   },
-                  child: const Icon(Icons.cloud),
+                  child: const Icon(Icons.palette),
                 ),
                 const SizedBox(height: 15),
                 FloatingActionButton(
                   onPressed: () {
-                    _getWeather("Bishkek");
+                    _getWeather("San Francisco");
                   },
-                  child: const Icon(Icons.palette),
+                  child: const Icon(Icons.cloud),
                 ),
               ],
             ),
@@ -78,15 +84,13 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 ShrinkInAndOutFAB(
                   onPressed: _increase,
-                  shrink: BlocProvider.of<CounterBloc>(context).state
-                      is CounterIncreaseBlocked,
+                  shrink: shrinkIncreaseButton,
                   child: const Icon(Icons.add),
                 ),
                 const SizedBox(height: 15),
                 ShrinkInAndOutFAB(
                   onPressed: _decrease,
-                  shrink: BlocProvider.of<CounterBloc>(context).state
-                      is CounterDecreaseBlocked,
+                  shrink: shrinkDecreaseButton,
                   child: const Icon(
                     Icons.remove,
                   ),
