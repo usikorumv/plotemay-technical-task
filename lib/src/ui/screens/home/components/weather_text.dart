@@ -22,11 +22,11 @@ class _WeatherTextState extends State<WeatherText> {
         if (state is WeatherLoaded) {
           return Text(state.weather);
         }
-        if (state is WeatherError) {
-          return const Text("Getting weather went wrong");
+        if (state is WeatherLoadError) {
+          return Text(state.errorMessage);
         }
-        if (state is LocationError) {
-          return const Text("Getting current location went wrong");
+        if (state is LocationLoadError) {
+          return Text(state.errorMessage);
         }
         return const Text("Press the icon to get your location");
       },

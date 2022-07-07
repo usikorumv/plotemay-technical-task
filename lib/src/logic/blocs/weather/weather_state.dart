@@ -1,5 +1,6 @@
 part of 'weather_bloc.dart';
 
+@immutable
 abstract class WeatherState extends Equatable {
   const WeatherState();
 
@@ -9,9 +10,22 @@ abstract class WeatherState extends Equatable {
 
 class WeatherInitial extends WeatherState {}
 
-class WeatherError extends WeatherState {}
+class WeatherError extends WeatherState {
+  final String errorMessage;
 
-class LocationError extends WeatherState {}
+  const WeatherError({required this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
+}
+
+class WeatherLoadError extends WeatherError {
+  const WeatherLoadError({required super.errorMessage});
+}
+
+class LocationLoadError extends WeatherError {
+  const LocationLoadError({required super.errorMessage});
+}
 
 class WeatherLoading extends WeatherState {}
 

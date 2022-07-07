@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plotemay_technical_task/src/logic/blocs/counter/counter_bloc.dart';
 import 'package:plotemay_technical_task/src/logic/blocs/weather/weather_bloc.dart';
-import 'package:plotemay_technical_task/src/ui/screens/components/shrink_in_and_out_fab.dart';
+import 'package:plotemay_technical_task/src/ui/components/shrink_in_and_out_fab.dart';
 import 'package:plotemay_technical_task/src/utils/my_theme/config.dart';
 
 class FABs extends StatefulWidget {
@@ -30,16 +30,16 @@ class _FABsState extends State<FABs> {
             children: [
               FloatingActionButton(
                 onPressed: () {
-                  currentTheme.switchTheme();
+                  _getWeather();
                 },
-                child: const Icon(Icons.palette),
+                child: const Icon(Icons.cloud),
               ),
               const SizedBox(height: 15),
               FloatingActionButton(
                 onPressed: () {
-                  _getWeather();
+                  currentTheme.switchTheme();
                 },
-                child: const Icon(Icons.cloud),
+                child: const Icon(Icons.palette),
               ),
             ],
           ),
@@ -67,17 +67,16 @@ class _FABsState extends State<FABs> {
   }
 
   void _increase() {
-    BlocProvider.of<CounterBloc>(context).add(IncreaseCounter());
+    context.read<CounterBloc>().add(IncreaseCounter());
     setState(() {});
   }
 
   void _decrease() {
-    BlocProvider.of<CounterBloc>(context).add(DecreaseCounter());
+    context.read<CounterBloc>().add(DecreaseCounter());
     setState(() {});
   }
 
   void _getWeather() {
-    BlocProvider.of<WeatherBloc>(context).add(LoadWeather());
-    setState(() {});
+    context.read<WeatherBloc>().add(LoadWeather());
   }
 }

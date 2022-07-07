@@ -25,7 +25,7 @@ class _ShrinkInAndOutFABState extends State<ShrinkInAndOutFAB> {
       children: [
         const SizedBox(height: 55),
         AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 300),
           constraints: BoxConstraints(maxHeight: height),
           child: FloatingActionButton(
             onPressed: widget.onPressed,

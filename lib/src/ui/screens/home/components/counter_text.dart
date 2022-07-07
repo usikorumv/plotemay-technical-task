@@ -12,16 +12,19 @@ class CounterText extends StatefulWidget {
 class _CounterTextState extends State<CounterText> {
   @override
   Widget build(BuildContext context) {
-    int count = BlocProvider.of<CounterBloc>(context).count;
+    ValueNotifier<int> counter = context.read<CounterBloc>().counter;
 
     return Column(
       children: [
         const Text(
           "You have pushed the button this many times:",
         ),
-        Text(
-          "$count",
-          style: Theme.of(context).textTheme.headline4,
+        ValueListenableBuilder<int>(
+          valueListenable: counter,
+          builder: (BuildContext context, int value, Widget? child) => Text(
+            "${counter.value}",
+            style: Theme.of(context).textTheme.headline4,
+          ),
         ),
       ],
     );

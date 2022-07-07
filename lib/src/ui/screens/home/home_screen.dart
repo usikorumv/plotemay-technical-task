@@ -22,7 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            WeatherText(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: WeatherText(),
+            ),
             SizedBox(height: 40),
             CounterText(),
           ],

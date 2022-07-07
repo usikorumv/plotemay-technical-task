@@ -32,7 +32,10 @@ class _ApplicationState extends State<Application> {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<CounterBloc>(
-            create: (context) => CounterBloc(),
+            create: (context) => CounterBloc(
+              multiplier:
+                  currentTheme.currentTheme() == ThemeMode.light ? 1 : 2,
+            ),
           ),
           BlocProvider<WeatherBloc>(
             create: (context) => WeatherBloc(),
